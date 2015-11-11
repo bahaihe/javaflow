@@ -16,6 +16,7 @@
 
 	<modules>
 		<module>jf</module>
+		<module>tryit</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

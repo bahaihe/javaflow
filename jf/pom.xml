@@ -12,7 +12,6 @@
 		<version>0.1</version>
 	</parent>
 	<artifactId>jf</artifactId>
-	<groupId>javaflow</groupId>
 	<version>0.1</version>
 
 	<developers>
@@ -98,7 +97,7 @@
 								</manifest>
 								<manifestEntries>
 									<premain-class>org.apache.commons.javaflow.Agent</premain-class>
-									<Boot-Class-Path>jf-0.1.jar</Boot-Class-Path>
+									<Boot-Class-Path>jf-${version}.jar</Boot-Class-Path>
 								</manifestEntries>
 							</archive>
 						</configuration>
