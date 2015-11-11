@@ -5,14 +5,10 @@
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.apache.commons</groupId>
-		<artifactId>commons-sandbox-parent</artifactId>
-		<version>9</version>
-	</parent>
 
-	<artifactId>commons-javaflow</artifactId>
-	<version>2.0-SNAPSHOT</version>
+	<artifactId>javaflow-ex</artifactId>
+	<groupId>org.kostaskougios</groupId>
+	<version>1.0-SNAPSHOT</version>
 	<name>Apache Commons Javaflow (Sandbox)</name>
 	<url>http://commons.apache.org/sandbox/javaflow/</url>
 	<inceptionYear>2004</inceptionYear>
@@ -44,20 +40,6 @@
 			<email>marc at bridner.com</email>
 		</contributor>
 	</contributors>
-
-	<scm>
-		<connection>scm:svn:http://svn.apache.org/repos/asf/commons/sandbox/javaflow/trunk/</connection>
-		<developerConnection>scm:svn:https://svn.apache.org/repos/asf/commons/sandbox/javaflow/trunk/
-		</developerConnection>
-		<url>http://svn.apache.org/viewvc/commons/sandbox/javaflow/trunk/</url>
-	</scm>
-
-	<distributionManagement>
-		<site>
-			<id>website</id>
-			<url>scpexe://people.apache.org/www/commons.apache.org/sandbox/javaflow/</url>
-		</site>
-	</distributionManagement>
 
 	<dependencies>
 		<dependency>
@@ -115,6 +97,17 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.8</source>
+					<target>1.8</target>
+					<!-- put your configurations here -->
+				</configuration>
+			</plugin>
+			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<includes>
@@ -125,6 +118,31 @@
 					</excludes>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
+			</plugin>
+			<!-- Prepares Agent JAR before test execution -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<index>true</index>
+								<manifest>
+									<addClasspath>true</addClasspath>
+								</manifest>
+								<manifestEntries>
+									<premain-class>org.apache.commons.javaflow.Agent</premain-class>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
