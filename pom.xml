@@ -138,6 +138,8 @@
 								</manifest>
 								<manifestEntries>
 									<premain-class>org.apache.commons.javaflow.Agent</premain-class>
+									<Boot-Class-Path>/home/ariskk/sources/javaflow/target/javaflow-ex-1.0-SNAPSHOT.jar
+									</Boot-Class-Path>
 								</manifestEntries>
 							</archive>
 						</configuration>
