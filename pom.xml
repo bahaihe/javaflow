@@ -6,91 +6,68 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>javaflow-ex</artifactId>
-	<groupId>org.kostaskougios</groupId>
-	<version>1.0-SNAPSHOT</version>
+	<artifactId>parent</artifactId>
+	<groupId>javaflow</groupId>
+	<packaging>pom</packaging>
+	<version>0.1</version>
 	<name>Apache Commons Javaflow (Sandbox)</name>
 	<url>http://commons.apache.org/sandbox/javaflow/</url>
 	<inceptionYear>2004</inceptionYear>
 
-	<developers>
-		<developer>
-			<id>tcurdt</id>
-			<name>Torsten Curdt</name>
-			<email>tcurdt at apache.org</email>
-		</developer>
-		<developer>
-			<id>kohsuke</id>
-			<name>Kohsuke Kawaguchi</name>
-			<email>kohsuke at apache.org</email>
-		</developer>
-	</developers>
-
-	<contributors>
-		<contributor>
-			<name>Eugene Kuleshov</name>
-			<email>eu at javatx.org</email>
-		</contributor>
-		<contributor>
-			<name>Valery Silaev</name>
-			<email>vsilaev at gmail.com</email>
-		</contributor>
-		<contributor>
-			<name>Marc Bridner</name>
-			<email>marc at bridner.com</email>
-		</contributor>
-	</contributors>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.ow2.asm</groupId>
-			<artifactId>asm</artifactId>
-			<version>${asm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ow2.asm</groupId>
-			<artifactId>asm-analysis</artifactId>
-			<version>${asm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ow2.asm</groupId>
-			<artifactId>asm-commons</artifactId>
-			<version>${asm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ow2.asm</groupId>
-			<artifactId>asm-util</artifactId>
-			<version>${asm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ow2.asm</groupId>
-			<artifactId>asm-tree</artifactId>
-			<version>${asm.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit-addons</groupId>
-			<artifactId>junit-addons</artifactId>
-			<version>1.4</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+	<modules>
+		<module>jf</module>
+	</modules>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-analysis</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-commons</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-util</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-tree</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>3.8.2</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit-addons</groupId>
+				<artifactId>junit-addons</artifactId>
+				<version>1.4</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<properties>
 		<maven.compile.source>1.8</maven.compile.source>
 		<maven.compile.target>1.8</maven.compile.target>
 		<commons.componentid>javaflow</commons.componentid>
-		<commons.jira.componentid>12311186</commons.jira.componentid>
 		<asm.version>5.0.4</asm.version>
 	</properties>
 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+		xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>javaflow</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1</version>
+	</parent>
+	<artifactId>jf</artifactId>
+	<groupId>javaflow</groupId>
+	<version>0.1</version>
+
+	<developers>
+		<developer>
+			<id>tcurdt</id>
+			<name>Torsten Curdt</name>
+			<email>tcurdt at apache.org</email>
+		</developer>
+		<developer>
+			<id>kohsuke</id>
+			<name>Kohsuke Kawaguchi</name>
+			<email>kohsuke at apache.org</email>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>Eugene Kuleshov</name>
+			<email>eu at javatx.org</email>
+		</contributor>
+		<contributor>
+			<name>Valery Silaev</name>
+			<email>vsilaev at gmail.com</email>
+		</contributor>
+		<contributor>
+			<name>Marc Bridner</name>
+			<email>marc at bridner.com</email>
+		</contributor>
+	</contributors>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm-analysis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm-tree</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit-addons</groupId>
+			<artifactId>junit-addons</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
