@@ -152,7 +152,7 @@ public class ContinuationMethodAnalyzer extends MethodNode implements Opcodes {
 		Analyzer a = new Analyzer(i);
 		a.analyze(className, this);
 
-		final HashMap<AbstractInsnNode, MethodInsnNode> movable = new HashMap<AbstractInsnNode, MethodInsnNode>();
+		final HashMap<AbstractInsnNode, MethodInsnNode> movable = new HashMap<>();
 
 		Frame[] frames = a.getFrames();
 		for (int j = 0; j < methods.size(); j++) {
@@ -205,7 +205,7 @@ public class ContinuationMethodAnalyzer extends MethodNode implements Opcodes {
 				requireDup = true;
 			}
 
-			MethodInsnNode mnode = (MethodInsnNode) e.getValue();
+			MethodInsnNode mnode = e.getValue();
 			AbstractInsnNode nm = mnode;
 
 			int varOffset = stackRecorderVar + 1;
