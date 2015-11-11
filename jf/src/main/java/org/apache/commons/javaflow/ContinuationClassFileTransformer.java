@@ -18,8 +18,10 @@ public class ContinuationClassFileTransformer implements ClassFileTransformer {
 
 	@Override
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-		System.out.println("Instrumenting " + className);
+		if (!className.startsWith("org/apache/commons/javaflow")) {
+			System.out.println("Instrumenting " + className);
 
-		return transformer.transform(classfileBuffer);
+			return transformer.transform(classfileBuffer);
+		} else return classfileBuffer;
 	}
 }

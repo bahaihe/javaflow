@@ -6,12 +6,15 @@ import org.apache.commons.javaflow.Continuation;
  * @author kostas.kougios
  * Date: 11/11/15
  */
-public class X {
+public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("OK");
+		System.out.println("---> Should instrument these classes");
 
-		Continuation c = Continuation.startWith(new MyRunnable());
+		AClz aClz = new AClz();
+		AnExample pTarget = new AnExample();
+		System.out.println("<--- Should instrument these classes");
+		Continuation c = Continuation.startWith(pTarget);
 		while (c != null) {
 			System.out.println("-----------------------");
 			c = Continuation.continueWith(c);
