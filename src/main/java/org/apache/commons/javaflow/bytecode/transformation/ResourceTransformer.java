@@ -23,8 +23,6 @@ package org.apache.commons.javaflow.bytecode.transformation;
  * When {@link Continuation#suspend()} is called, all the methods
  * in the stack frame needs to be enhanced.
  *
- * @see BcelClassTransformer
- * @see AsmClassTransformer
  */
 public interface ResourceTransformer {
 
