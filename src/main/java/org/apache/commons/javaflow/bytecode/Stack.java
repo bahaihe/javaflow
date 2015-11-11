@@ -17,8 +17,6 @@
 package org.apache.commons.javaflow.bytecode;
 
 import org.apache.commons.javaflow.utils.ReflectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -30,7 +28,6 @@ import java.io.Serializable;
  */
 public class Stack implements Serializable {
 
-	private static final Log log = LogFactory.getLog(Stack.class);
 	private static final long serialVersionUID = 2L;
 
 	private int[] istack;
@@ -84,9 +81,6 @@ public class Stack implements Serializable {
 		}
 
 		final double d = dstack[--dTop];
-		if (log.isDebugEnabled()) {
-			log.debug("pop double " + d + " " + getStats());
-		}
 		return d;
 	}
 
@@ -100,9 +94,6 @@ public class Stack implements Serializable {
 		}
 
 		final float f = fstack[--fTop];
-		if (log.isDebugEnabled()) {
-			log.debug("pop float " + f + " " + getStats());
-		}
 		return f;
 	}
 
@@ -116,9 +107,6 @@ public class Stack implements Serializable {
 		}
 
 		final int i = istack[--iTop];
-		if (log.isDebugEnabled()) {
-			log.debug("pop int " + i + " " + getStats());
-		}
 		return i;
 	}
 
@@ -132,9 +120,6 @@ public class Stack implements Serializable {
 		}
 
 		final long l = lstack[--lTop];
-		if (log.isDebugEnabled()) {
-			log.debug("pop long " + l + " " + getStats());
-		}
 		return l;
 	}
 
@@ -149,13 +134,6 @@ public class Stack implements Serializable {
 
 		final Object o = ostack[--oTop];
 		ostack[oTop] = null;  // avoid unnecessary reference to object
-
-		if (log.isDebugEnabled()) {
-			final String clazz = ReflectionUtils.getClassName(o);
-			final String clazzLoader = ReflectionUtils.getClassLoaderName(o);
-
-			log.debug("pop object " + clazz + "/" + clazzLoader + " [" + o + "] ");
-		}
 
 		return o;
 	}
@@ -172,20 +150,10 @@ public class Stack implements Serializable {
 		final Object o = rstack[--rTop];
 		rstack[rTop] = null;  // avoid unnecessary reference to object
 
-		if (log.isDebugEnabled()) {
-			final String clazz = ReflectionUtils.getClassName(o);
-			final String clazzLoader = ReflectionUtils.getClassLoaderName(o);
-
-			log.debug("pop reference " + clazz + "/" + clazzLoader + " [" + o + "] " + getStats());
-		}
-
 		return o;
 	}
 
 	public void pushDouble(double d) {
-		if (log.isDebugEnabled()) {
-			log.debug("push double " + d + " " + getStats());
-		}
 
 		if (dTop == dstack.length) {
 			double[] hlp = new double[Math.max(8, dstack.length * 2)];
@@ -196,9 +164,6 @@ public class Stack implements Serializable {
 	}
 
 	public void pushFloat(float f) {
-		if (log.isDebugEnabled()) {
-			log.debug("push float " + f + " " + getStats());
-		}
 
 		if (fTop == fstack.length) {
 			float[] hlp = new float[Math.max(8, fstack.length * 2)];
@@ -209,9 +174,6 @@ public class Stack implements Serializable {
 	}
 
 	public void pushInt(int i) {
-		if (log.isDebugEnabled()) {
-			log.debug("push int " + i + " " + getStats());
-		}
 
 		if (iTop == istack.length) {
 			int[] hlp = new int[Math.max(8, istack.length * 2)];
@@ -222,9 +184,6 @@ public class Stack implements Serializable {
 	}
 
 	public void pushLong(long l) {
-		if (log.isDebugEnabled()) {
-			log.debug("push long " + l + " " + getStats());
-		}
 
 		if (lTop == lstack.length) {
 			long[] hlp = new long[Math.max(8, lstack.length * 2)];
@@ -236,12 +195,6 @@ public class Stack implements Serializable {
 
 	public void pushObject(Object o) {
 
-		if (log.isDebugEnabled()) {
-			final String clazz = ReflectionUtils.getClassName(o);
-			final String clazzLoader = ReflectionUtils.getClassLoaderName(o);
-			log.debug("push object " + clazz + "/" + clazzLoader + " [" + o + "] " + getStats());
-		}
-
 		if (oTop == ostack.length) {
 			Object[] hlp = new Object[Math.max(8, ostack.length * 2)];
 			System.arraycopy(ostack, 0, hlp, 0, ostack.length);
@@ -251,13 +204,6 @@ public class Stack implements Serializable {
 	}
 
 	public void pushReference(Object o) {
-
-		if (log.isDebugEnabled()) {
-			final String clazz = ReflectionUtils.getClassName(o);
-			final String clazzLoader = ReflectionUtils.getClassLoaderName(o);
-
-			log.debug("push reference " + clazz + "/" + clazzLoader + " [" + o + "] " + getStats());
-		}
 
 		if (rTop == rstack.length) {
 			Object[] hlp = new Object[Math.max(8, rstack.length * 2)];
@@ -285,21 +231,6 @@ public class Stack implements Serializable {
 
 	public boolean isEmpty() {
 		return iTop == 0 && lTop == 0 && dTop == 0 && fTop == 0 && oTop == 0 && rTop == 0;
-	}
-
-	private String getStats() {
-		if (log.isDebugEnabled()) {
-			final StringBuilder sb = new StringBuilder();
-			sb.append("i[").append(iTop).append("],");
-			sb.append("l[").append(lTop).append("],");
-			sb.append("d[").append(dTop).append("],");
-			sb.append("f[").append(fTop).append("],");
-			sb.append("o[").append(oTop).append("],");
-			sb.append("r[").append(rTop).append("]");
-			return sb.toString();
-		} else {
-			return "enable debug loglevel to see stats";
-		}
 	}
 
 	private String getContent() {

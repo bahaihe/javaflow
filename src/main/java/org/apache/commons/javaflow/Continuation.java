@@ -18,8 +18,6 @@ package org.apache.commons.javaflow;
 
 import org.apache.commons.javaflow.bytecode.StackRecorder;
 import org.apache.commons.javaflow.utils.ReflectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.Serializable;
 
@@ -40,7 +38,6 @@ import java.io.Serializable;
  */
 public final class Continuation implements Serializable {
 
-	private static final Log log = LogFactory.getLog(Continuation.class);
 	private static final long serialVersionUID = 2L;
 
 	private final StackRecorder stackRecorder;
@@ -123,10 +120,6 @@ public final class Continuation implements Serializable {
 			throw new IllegalArgumentException("target is null");
 		}
 
-		if (log.isDebugEnabled()) {
-			log.debug("starting new flow from " + ReflectionUtils.getClassName(pTarget) + "/" + ReflectionUtils.getClassLoaderName(pTarget));
-		}
-
 		return continueWith(new Continuation(new StackRecorder(pTarget)), pContext);
 	}
 
@@ -162,10 +155,6 @@ public final class Continuation implements Serializable {
 	public static Continuation continueWith(final Continuation pOldContinuation, final Object pContext) {
 		if (pOldContinuation == null) {
 			throw new IllegalArgumentException("continuation parameter must not be null.");
-		}
-
-		if (log.isDebugEnabled()) {
-			log.debug("continueing with continuation " + ReflectionUtils.getClassName(pOldContinuation) + "/" + ReflectionUtils.getClassLoaderName(pOldContinuation));
 		}
 
 		while (true) {

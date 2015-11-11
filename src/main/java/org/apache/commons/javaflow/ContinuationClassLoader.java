@@ -18,8 +18,6 @@ package org.apache.commons.javaflow;
 
 import org.apache.commons.javaflow.bytecode.transformation.ResourceTransformer;
 import org.apache.commons.javaflow.bytecode.transformation.asm.AsmClassTransformer;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -46,7 +44,6 @@ import java.util.List;
  */
 public final class ContinuationClassLoader extends URLClassLoader {
 
-	private final static Log log = LogFactory.getLog(ContinuationClassLoader.class);
 
 	private final ResourceTransformer transformer;
 
@@ -61,14 +58,14 @@ public final class ContinuationClassLoader extends URLClassLoader {
 	 * loader regardless of whether the parent class loader is being searched
 	 * first or not.
 	 */
-	private List<String> systemPackages = new ArrayList<String>();
+	private List<String> systemPackages = new ArrayList<>();
 
 	/**
 	 * These are the package roots that are to be loaded by this class loader
 	 * regardless of whether the parent class loader is being searched first
 	 * or not.
 	 */
-	private List<String> loaderPackages = new ArrayList<String>();
+	private List<String> loaderPackages = new ArrayList<>();
 
 	/**
 	 * Whether or not this classloader will ignore the base
@@ -191,7 +188,6 @@ public final class ContinuationClassLoader extends URLClassLoader {
 	 */
 	public Class<?> forceLoadClass(String classname)
 			throws ClassNotFoundException {
-		log.debug("force loading " + classname);
 
 		Class<?> theClass = findLoadedClass(classname);
 
@@ -275,23 +271,17 @@ public final class ContinuationClassLoader extends URLClassLoader {
 		if (isParentFirst(classname)) {
 			try {
 				theClass = getParent().loadClass(classname);
-				log.debug("Class " + classname + " loaded from parent loader "
-						+ "(parentFirst)");
 			} catch (ClassNotFoundException cnfe) {
 				theClass = findClass(classname);
-				log.debug("Class " + classname + " loaded from ant loader "
-						+ "(parentFirst)");
 			}
 		} else {
 			try {
 				theClass = findClass(classname);
-				log.debug("Class " + classname + " loaded from ant loader");
 			} catch (ClassNotFoundException cnfe) {
 				if (ignoreBase) {
 					throw cnfe;
 				}
 				theClass = getParent().loadClass(classname);
-				log.debug("Class " + classname + " loaded from parent loader");
 			}
 		}
 
@@ -377,7 +367,6 @@ public final class ContinuationClassLoader extends URLClassLoader {
 	 *                                   on this loader's classpath.
 	 */
 	public Class<?> findClass(final String name) throws ClassNotFoundException {
-		log.debug("Finding class " + name);
 
 		// locate the class file
 		String classFileName = name.replace('.', '/') + ".class";

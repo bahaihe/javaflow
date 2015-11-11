@@ -36,12 +36,12 @@ public final class ClassTransformerClassLoader extends BytecodeClassLoader {
 
 	public ClassTransformerClassLoader(final ResourceTransformer pTransformer, final Class<?>[] pInstrument, final Class<?>[] pLoad) {
 
-		instrument = new HashSet<String>(pInstrument.length);
+		instrument = new HashSet<>(pInstrument.length);
 		for (int i = 0; i < pInstrument.length; i++) {
 			instrument.add(pInstrument[i].getName());
 		}
 
-		load = new HashSet<String>(pLoad.length);
+		load = new HashSet<>(pLoad.length);
 		for (int i = 0; i < pLoad.length; i++) {
 			load.add(pLoad[i].getName());
 		}

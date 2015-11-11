@@ -18,8 +18,6 @@ package org.apache.commons.javaflow.utils;
 
 import org.apache.commons.javaflow.bytecode.transformation.ResourceTransformer;
 import org.apache.commons.javaflow.bytecode.transformation.asm.AsmClassTransformer;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.*;
 import java.util.jar.JarEntry;
@@ -27,8 +25,6 @@ import java.util.jar.JarInputStream;
 import java.util.jar.JarOutputStream;
 
 public final class RewritingUtils {
-
-	private final static Log log = LogFactory.getLog(RewritingUtils.class);
 
 	public interface Matcher {
 		boolean isMatching(final String name);
@@ -92,10 +88,6 @@ public final class RewritingUtils {
 			if (name.endsWith(".class")) {
 				if (pMatcher.isMatching(name)) {
 
-					if (log.isDebugEnabled()) {
-						log.debug("transforming " + name);
-					}
-
 					final byte[] original = toByteArray(pInput);
 
 					byte[] transformed = transformer.transform(original);
@@ -121,9 +113,7 @@ public final class RewritingUtils {
 				continue;
 			}
 
-			int length = copy(pInput, pOutput);
-
-			log.debug("copied " + name + "(" + length + ")");
+			copy(pInput, pOutput);
 		}
 
 		pInput.close();

@@ -16,9 +16,6 @@
  */
 package org.apache.commons.javaflow.utils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -26,8 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class ReflectionUtils {
-
-	private final static Log log = LogFactory.getLog(ReflectionUtils.class);
 
 	public interface Matcher {
 		boolean matches(final String pName);
@@ -73,9 +68,7 @@ public final class ReflectionUtils {
 			final Indexer pIndexer
 	) {
 
-		log.debug("discovering fields on " + pClazz.getName());
-
-		final Map<String, Object> result = new HashMap<String, Object>();
+		final Map<String, Object> result = new HashMap<>();
 
 		Class<?> current = pClazz;
 		do {
@@ -84,7 +77,6 @@ public final class ReflectionUtils {
 				if (pMatcher.matches(fname)) {
 					pIndexer.put(result, fname, field);
 
-					log.debug("discovered field " + fname + " -> " + field);
 				}
 			}
 			current = current.getSuperclass();
@@ -115,9 +107,7 @@ public final class ReflectionUtils {
 			final Indexer pIndexer
 	) {
 
-		log.debug("discovering methods on " + pClazz.getName());
-
-		final Map<String, Object> result = new HashMap<String, Object>();
+		final Map<String, Object> result = new HashMap<>();
 
 		Class<?> current = pClazz;
 		do {
@@ -125,8 +115,6 @@ public final class ReflectionUtils {
 				final String mname = method.getName();
 				if (pMatcher.matches(mname)) {
 					pIndexer.put(result, mname, method);
-
-					log.debug("discovered method " + mname + " -> " + method);
 				}
 			}
 			current = current.getSuperclass();
