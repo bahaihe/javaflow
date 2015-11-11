@@ -14,7 +14,7 @@ public class Main {
 		AClz aClz = new AClz();
 		AnExample pTarget = new AnExample();
 		System.out.println("<--- Should instrument these classes");
-		Continuation c = Continuation.startWith(pTarget);
+		Continuation c = Continuation.startWith(aClz);
 		while (c != null) {
 			System.out.println("-----------------------");
 			c = Continuation.continueWith(c);

@@ -40,6 +40,10 @@
 			<name>Marc Bridner</name>
 			<email>marc at bridner.com</email>
 		</contributor>
+		<contributor>
+			<name>Kostas Kougios</name>
+			<email>kostas dot kougios at google mail dot com</email>
+		</contributor>
 	</contributors>
 
 	<dependencies>
@@ -98,6 +102,7 @@
 								<manifestEntries>
 									<premain-class>org.apache.commons.javaflow.Agent</premain-class>
 									<Boot-Class-Path>jf-${version}.jar</Boot-Class-Path>
+									<Can-Redefine-Classes>true</Can-Redefine-Classes>
 								</manifestEntries>
 							</archive>
 						</configuration>
