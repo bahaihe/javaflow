@@ -19,7 +19,6 @@
 			<groupId>javaflow</groupId>
 			<artifactId>jf</artifactId>
 			<version>0.1</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

@@ -37,7 +37,7 @@ public final class MonitoringFrame extends Frame {
 
 	public MonitoringFrame(int arg0, int arg1) {
 		super(arg0, arg1);
-		monitored = new LinkedList<Integer>();
+		monitored = new LinkedList<>();
 	}
 
 	public void execute(AbstractInsnNode insn, Interpreter interpreter)
@@ -76,9 +76,9 @@ public final class MonitoringFrame extends Frame {
 	public Frame init(Frame frame) {
 		super.init(frame);
 		if (frame instanceof MonitoringFrame) {
-			monitored = new LinkedList<Integer>(MonitoringFrame.class.cast(frame).monitored);
+			monitored = new LinkedList<>(MonitoringFrame.class.cast(frame).monitored);
 		} else {
-			monitored = new LinkedList<Integer>();
+			monitored = new LinkedList<>();
 		}
 		return this;
 	}
@@ -92,7 +92,7 @@ public final class MonitoringFrame extends Frame {
 	}
 
 	public void monitorEnter(int local) {
-		monitored.add(new Integer(local));
+		monitored.add(local);
 	}
 
 	public void monitorExit(int local) {

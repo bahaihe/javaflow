@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.commons.javaflow.bytecode;
+package org.apache.commons.javaflow.classloaders;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;

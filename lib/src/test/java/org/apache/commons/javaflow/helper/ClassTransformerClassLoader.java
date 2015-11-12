@@ -17,8 +17,8 @@
 package org.apache.commons.javaflow.helper;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.javaflow.bytecode.BytecodeClassLoader;
 import org.apache.commons.javaflow.bytecode.transformation.ResourceTransformer;
+import org.apache.commons.javaflow.classloaders.BytecodeClassLoader;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.util.ASMifier;
 import org.objectweb.asm.util.CheckClassAdapter;
