@@ -11,10 +11,8 @@ public class DoRun {
 	public void run() {
 		System.out.println("---> Should instrument these classes");
 		C1 c1 = new C1();
-		C2 c2 = new C2();
 		System.out.println("<--- Should instrument these classes");
 		doCont(c1);
-		doCont(c2);
 	}
 
 	private void doCont(Runnable r) {

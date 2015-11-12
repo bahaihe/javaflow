@@ -1,6 +1,5 @@
 package org.apache.commons.javaflow;
 
-import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.net.URLClassLoader;
 
@@ -16,11 +15,13 @@ public class Agent {
 		System.out.println("Continuations: Instrumenting");
 
 		URLClassLoader parent = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+
+		// we need a dummy classloader to load classes during instrumentation because
+		// if a class is loaded during javaflow instrumentation, the java agent is not called
+		// to instrument it.
 		URLClassLoader instClassLoader = new URLClassLoader(parent.getURLs(), null);
 		Thread.currentThread().setContextClassLoader(instClassLoader);
-		Class<?> trClz = instClassLoader.loadClass("org.apache.commons.javaflow.ContinuationClassFileTransformer");
-		ClassFileTransformer transformer = (ClassFileTransformer) trClz.newInstance();
 		// registers the transformer
-		inst.addTransformer(transformer, true);
+		inst.addTransformer(new ContinuationClassFileTransformer(), true);
 	}
 }
