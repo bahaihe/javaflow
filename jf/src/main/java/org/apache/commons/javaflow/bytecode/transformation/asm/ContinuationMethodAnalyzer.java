@@ -29,9 +29,9 @@ public class ContinuationMethodAnalyzer extends MethodNode implements Opcodes {
 	protected final ClassVisitor cv;
 	protected final MethodVisitor mv;
 
-	protected final List<Label> labels = new ArrayList<Label>();
-	protected final List<MethodInsnNode> nodes = new ArrayList<MethodInsnNode>();
-	protected final List<MethodInsnNode> methods = new ArrayList<MethodInsnNode>();
+	protected final List<Label> labels = new ArrayList<>();
+	protected final List<MethodInsnNode> nodes = new ArrayList<>();
+	protected final List<MethodInsnNode> methods = new ArrayList<>();
 
 	protected Analyzer analyzer;
 	public int stackRecorderVar;
