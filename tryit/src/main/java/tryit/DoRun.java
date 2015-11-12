@@ -1,5 +1,7 @@
 package tryit;
 
+import org.apache.commons.javaflow.Continuation;
+
 /**
  * @author kostas.kougios
  * Date: 11/11/15
@@ -15,12 +17,11 @@ public class DoRun {
 		doCont(c2);
 	}
 
-	private void doCont(Runnable c1) {
-		System.out.println("doCont " + c1);
-//		Continuation c = Continuation.startWith(c1);
-//		while (c != null) {
-//			System.out.println("-----------------------");
-//			c = Continuation.continueWith(c);
-//		}
+	private void doCont(Runnable r) {
+		Continuation c = Continuation.startWith(r);
+		while (c != null) {
+			System.out.println("-----------------------");
+			c = Continuation.continueWith(c);
+		}
 	}
 }

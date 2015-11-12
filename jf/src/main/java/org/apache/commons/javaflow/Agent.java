@@ -16,14 +16,7 @@ public class Agent {
 		System.out.println("Continuations: Instrumenting");
 
 		URLClassLoader parent = (URLClassLoader) Thread.currentThread().getContextClassLoader();
-		URLClassLoader instClassLoader = new URLClassLoader(parent.getURLs(), null) {
-			@Override
-			protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-				System.out.println("instClassLoader loading " + name);
-				return super.loadClass(name, resolve);
-			}
-
-		};
+		URLClassLoader instClassLoader = new URLClassLoader(parent.getURLs(), null);
 		Thread.currentThread().setContextClassLoader(instClassLoader);
 		Class<?> trClz = instClassLoader.loadClass("org.apache.commons.javaflow.ContinuationClassFileTransformer");
 		ClassFileTransformer transformer = (ClassFileTransformer) trClz.newInstance();
