@@ -1,1 +1,1 @@
-java -javaagent:jf/target/jf-0.1.jar -cp tryit/target/tryit-0.1.jar tryit.Main
+java -javaagent:jf/target/jf-0.1.jar -cp lib/target/lib-0.1.jar:tryit/target/classes tryit.Main
