@@ -1,7 +1,5 @@
 package tryit;
 
-import org.apache.commons.javaflow.Continuation;
-
 /**
  * @author kostas.kougios
  * Date: 11/11/15
@@ -15,6 +13,6 @@ public class C1 implements Runnable {
 
 	private void echo(int x) {
 		System.out.println(x);
-		Continuation.suspend();
+//		Continuation.suspend();
 	}
 }

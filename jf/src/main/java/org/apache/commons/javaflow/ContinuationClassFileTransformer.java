@@ -23,7 +23,7 @@ public class ContinuationClassFileTransformer implements ClassFileTransformer {
 				System.out.println("Instrumenting " + className);
 
 				return transformer.transform(classfileBuffer);
-			} else return classfileBuffer;
+			} else return null;
 		} catch (Throwable e) {
 			e.printStackTrace();
 			throw e;
