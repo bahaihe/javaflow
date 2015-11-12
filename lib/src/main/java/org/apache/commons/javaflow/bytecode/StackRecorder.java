@@ -16,8 +16,6 @@
  */
 package org.apache.commons.javaflow.bytecode;
 
-import org.apache.commons.javaflow.ContinuationDeath;
-
 /**
  * Adds additional behaviors necessary for stack capture/restore
  * on top of {@link Stack}.
@@ -105,13 +103,9 @@ public final class StackRecorder extends Stack {
 			} else {
 				return null;    // nothing more to continue
 			}
-		} catch (final ContinuationDeath cd) {
+		} catch (final RuntimeException | Error cd) {
 			// this isn't an error, so no need to log
 			throw cd;
-		} catch (final Error e) {
-			throw e;
-		} catch (final RuntimeException e) {
-			throw e;
 		} finally {
 			this.context = null;
 			deregisterThread(old);
