@@ -16,7 +16,6 @@
  */
 package org.apache.commons.javaflow.bytecode.transformation.asm;
 
-import org.apache.commons.javaflow.bytecode.StackRecorder;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -30,7 +29,7 @@ import java.util.List;
 
 public final class ContinuationMethodAdapter extends MethodVisitor implements Opcodes {
 
-	private static final String STACK_RECORDER = Type.getInternalName(StackRecorder.class);
+	private static final String STACK_RECORDER = "org/apache/commons/javaflow/bytecode/StackRecorder";//Type.getInternalName(StackRecorder.class);
 	private static final String POP_METHOD = "pop";
 	private static final String PUSH_METHOD = "push";
 
