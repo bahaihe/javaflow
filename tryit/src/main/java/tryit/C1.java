@@ -6,9 +6,9 @@ import org.apache.commons.javaflow.Continuation;
  * @author kostas.kougios
  * Date: 11/11/15
  */
-public class AClz implements Runnable {
+public class C1 implements Runnable {
 	public void run() {
-		System.out.println("AClz : started!");
+		System.out.println("C1 : started!");
 		for (int i = 0; i < 10; i++)
 			echo(i);
 	}

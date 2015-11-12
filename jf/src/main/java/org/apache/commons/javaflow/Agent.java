@@ -13,6 +13,6 @@ public class Agent {
 
 		System.out.println("Continuations: Instrumenting");
 		// registers the transformer
-		inst.addTransformer(new ContinuationClassFileTransformer(), false);
+		inst.addTransformer(new ContinuationClassFileTransformer(), true);
 	}
 }

@@ -103,6 +103,7 @@
 									<premain-class>org.apache.commons.javaflow.Agent</premain-class>
 									<Boot-Class-Path>jf-${version}.jar</Boot-Class-Path>
 									<Can-Redefine-Classes>true</Can-Redefine-Classes>
+									<Can-Retransform-Classes>true</Can-Retransform-Classes>
 								</manifestEntries>
 							</archive>
 						</configuration>

@@ -2,9 +2,9 @@ package tryit;
 
 import org.apache.commons.javaflow.Continuation;
 
-public class AnExample implements Runnable {
+public class C2 implements Runnable {
 	public void run() {
-		System.out.println("started!");
+		System.out.println("C2: started!");
 		for (int i = 0; i < 10; i++)
 			echo(i);
 	}
