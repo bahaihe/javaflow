@@ -16,6 +16,7 @@
  */
 package org.apache.commons.javaflow;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.apache.commons.javaflow.rewrite.Simple;
 
@@ -25,9 +26,9 @@ public final class UsageTestCase extends TestCase {
 		try {
 			final Runnable r = new Simple();
 			r.run();
-			fail();
+			Assert.fail();
 		} catch (final Exception e) {
-			assertTrue(e instanceof IllegalStateException);
+			Assert.assertTrue(e instanceof IllegalStateException);
 		}
 	}
 

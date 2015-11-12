@@ -30,14 +30,14 @@ public class ContinuationClassFileTransformer implements ClassFileTransformer {
 		}
 	}
 
-	private String[] skipPrefexes = new String[]{
+	private String[] skipPrefixes = new String[]{
 			"java/",
 			"sun/",
 			"org/apache/commons/javaflow"
 	};
 
 	private boolean shouldTransform(String className) {
-		for (String s : skipPrefexes) {
+		for (String s : skipPrefixes) {
 			if (className.startsWith(s)) return false;
 		}
 		return true;
