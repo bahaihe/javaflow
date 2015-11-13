@@ -17,6 +17,7 @@
 package org.apache.commons.javaflow;
 
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.apache.commons.javaflow.bytecode.transformation.asm.AsmClassTransformer;
 import org.apache.commons.javaflow.helper.ClassTransformerClassLoader;
@@ -63,8 +64,8 @@ public final class AsmTestSuite extends TestSuite {
 
 		final TestSuite suite = new TestSuite();
 		suite.setName("ASM");
-		suite.addTestSuite(classloader.loadClass(VerificationTestCase.class.getName()));
-		suite.addTestSuite(classloader.loadClass(SerializationTestCase.class.getName()));
+		suite.addTestSuite((Class<? extends TestCase>) classloader.loadClass(VerificationTestCase.class.getName()));
+		suite.addTestSuite((Class<? extends TestCase>) classloader.loadClass(SerializationTestCase.class.getName()));
 		return suite;
 	}
 }

@@ -16,9 +16,9 @@
  */
 package org.apache.commons.javaflow;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.apache.commons.javaflow.rewrite.Simple;
+import org.junit.Assert;
 
 public final class UsageTestCase extends TestCase {
 
