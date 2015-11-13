@@ -42,7 +42,7 @@ public class ContinuationClassFileTransformer implements ClassFileTransformer {
 				// we need a dummy classloader to load classes during instrumentation because
 				// if a class is loaded during javaflow instrumentation, the java agent is not called
 				// to instrument it.
-				URLClassLoader parent = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+				URLClassLoader parent = (URLClassLoader) loader;
 				URLClassLoader instClassLoader = new URLClassLoader(parent.getURLs(), null);
 				Thread.currentThread().setContextClassLoader(instClassLoader);
 

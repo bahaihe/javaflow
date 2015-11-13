@@ -24,7 +24,7 @@ public class ContinuationClassFileTransformerTest {
 		ResourceTransformer transformer = mock(ResourceTransformer.class);
 		when(transformer.transform(testClz)).thenReturn(testClzTransformed);
 		ContinuationClassFileTransformer t = ContinuationClassFileTransformer.withResourceTransformer(Collections.singletonList("tryit."), transformer);
-		byte[] clz = t.transform(null, "tryit.Main", null, null, testClz);
+		byte[] clz = t.transform(getClass().getClassLoader(), "tryit.Main", null, null, testClz);
 		assertArrayEquals(testClzTransformed, clz);
 		verify(transformer).transform(testClz);
 	}
@@ -34,7 +34,7 @@ public class ContinuationClassFileTransformerTest {
 		ResourceTransformer transformer = mock(ResourceTransformer.class);
 		when(transformer.transform(testClz)).thenReturn(testClzTransformed);
 		ContinuationClassFileTransformer t = ContinuationClassFileTransformer.withResourceTransformer(Collections.singletonList("tryit."), transformer);
-		byte[] clz = t.transform(null, "x.Main", null, null, testClz);
+		byte[] clz = t.transform(getClass().getClassLoader(), "x.Main", null, null, testClz);
 		assertNull(clz);
 		verify(transformer, never()).transform(testClz);
 	}
