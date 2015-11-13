@@ -25,17 +25,18 @@ public class Agent {
 		System.out.println("Continuations, instrumenting. Work dir is " + workDir.getAbsolutePath());
 
 		File instr = new File(workDir, "instrument.prefixes");
-		List<String> packages = ((List<String>) FileUtils.readLines(instr)).stream()
+		List<String> prefixes = ((List<String>) FileUtils.readLines(instr)).stream()
 				.map(String::trim)
-				.filter(s -> s.startsWith("#"))
-				.filter(String::isEmpty)
+				.filter(s -> !s.startsWith("#"))
+				.filter(s -> !s.isEmpty())
 				.collect(toList());
+		System.out.println("Instrumenting prefixes : " + prefixes);
 		// we need a dummy classloader to load classes during instrumentation because
 		// if a class is loaded during javaflow instrumentation, the java agent is not called
 		// to instrument it.
 		URLClassLoader instClassLoader = new URLClassLoader(parent.getURLs(), null);
 		Thread.currentThread().setContextClassLoader(instClassLoader);
 		// registers the transformer
-		inst.addTransformer(ContinuationClassFileTransformer.asmTransformer(packages), true);
+		inst.addTransformer(ContinuationClassFileTransformer.asmTransformer(prefixes), true);
 	}
 }
