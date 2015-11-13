@@ -15,17 +15,18 @@
 	<inceptionYear>2004</inceptionYear>
 
 	<modules>
+		<module>asm</module>
 		<module>jf</module>
 		<module>lib</module>
 		<module>tryit</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.ow2.asm</groupId>
-				<artifactId>asm</artifactId>
-				<version>${asm.version}</version>
-			</dependency>
+			<!--<dependency>-->
+			<!--<groupId>org.ow2.asm</groupId>-->
+			<!--<artifactId>asm</artifactId>-->
+			<!--<version>${asm.version}</version>-->
+			<!--</dependency>-->
 			<dependency>
 				<groupId>org.ow2.asm</groupId>
 				<artifactId>asm-analysis</artifactId>
