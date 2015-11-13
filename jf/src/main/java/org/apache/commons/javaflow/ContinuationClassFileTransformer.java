@@ -5,6 +5,7 @@ import org.apache.commons.javaflow.bytecode.transformation.asm.AsmClassTransform
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
+import java.net.URLClassLoader;
 import java.security.ProtectionDomain;
 import java.util.List;
 
@@ -33,11 +34,23 @@ public class ContinuationClassFileTransformer implements ClassFileTransformer {
 
 	@Override
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+		if (className == null) return null;
 		try {
 			if (shouldTransform(className)) {
 				System.out.println("Instrumenting " + className);
 
-				return transformer.transform(classfileBuffer);
+				// we need a dummy classloader to load classes during instrumentation because
+				// if a class is loaded during javaflow instrumentation, the java agent is not called
+				// to instrument it.
+				URLClassLoader parent = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+				URLClassLoader instClassLoader = new URLClassLoader(parent.getURLs(), null);
+				Thread.currentThread().setContextClassLoader(instClassLoader);
+
+				try {
+					return transformer.transform(classfileBuffer);
+				} finally {
+					Thread.currentThread().setContextClassLoader(parent);
+				}
 			} else return null;
 		} catch (Throwable e) {
 			e.printStackTrace();
